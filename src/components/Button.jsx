@@ -3,9 +3,15 @@ export default function Button({
   onClick,
   text,
   className = "",
+  loading,
 }) {
   return (
-    <button type={type} className={`submit-btn ${className}`} onClick={onClick}>
+    <button
+      type={type}
+      className={`${className}`}
+      onClick={onClick}
+      disabled={loading}
+    >
       {text}
     </button>
   );

@@ -4,6 +4,9 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import { toast } from "react-toastify";
 import AuthLink from "../components/AuthLink";
+import api from "../../utils/api";
+import { useNavigate } from "react-router-dom";
+import "../auth.css";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -13,6 +16,9 @@ export default function Signup() {
     password: "",
     confirmPassword: "",
   });
+
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,6 +30,7 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const { firstname, lastname, email, password, confirmPassword } = formData;
     if (password && confirmPassword && password !== confirmPassword) {
@@ -31,14 +38,37 @@ export default function Signup() {
       return;
     }
 
-    console.log("Form submitted:: ", formData);
-    toast.success("Account created successfully!");
+    try {
+      const res = await api.post("/signup", {
+        firstname,
+        lastname,
+        email,
+        password,
+        confirmPassword,
+      });
+
+      if (res.status === 200) {
+        toast.success("Account created successfully");
+        setFormData({
+          firstname: "",
+          lastname: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
+        navigate("/");
+      }
+    } catch (err) {
+      console.log("Error creating account:", err);
+      toast.error("Failed to create account. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-      <div 
-      className="authContainer"
-      >
+    <div className="body">
+      <div className="authContainer">
         <Header />
         <form className="">
           <div className="flex w-full flex-row gap-4 max-md:flex-col max-md:gap-0">
@@ -86,14 +116,18 @@ export default function Signup() {
           <Button
             type={"submit"}
             onClick={handleSubmit}
-            text={"Create Account"}
+            text={`${loading ? "Creating Account..." : "Create Account"}`}
+            className={`submit-btn ${
+              loading ? "cursor-not-allowed opacity-55" : ""
+            }`}
+            loading={loading}
           />
 
           <div className="text-xs/[1.4] text-[#718096] mt-4">
             By creating an account, you agree to our{" "}
             <a
               href="#"
-            //   onclick={toast("We'd send you emails.")}
+              //   onclick={toast("We'd send you emails.")}
               className="text-[#667eea] no-underline hover:underline"
             >
               Terms of Service
@@ -101,17 +135,19 @@ export default function Signup() {
             and{" "}
             <a
               href="#"
-            //   onClick={toast("We wont give anyone your email address")}
+              //   onClick={toast("We wont give anyone your email address")}
               className="text-[#667eea] no-underline hover:underline"
             >
               Privacy Policy
             </a>
           </div>
         </form>
-       <AuthLink
-       text = {"Already have an account"}
-       linkText = {"Log In"}
-       link = {'/'} />
+        <AuthLink
+          text={"Already have an account"}
+          linkText={"Log In"}
+          link={"/"}
+        />
       </div>
+    </div>
   );
 }
