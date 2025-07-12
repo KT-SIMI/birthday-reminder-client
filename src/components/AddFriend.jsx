@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import Input from "./Input";
 import Button from "./Button";
 
+
 export default function AddFriend({ close }) {
   const [body, setBody] = useState({
     name: "",

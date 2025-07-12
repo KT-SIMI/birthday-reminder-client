@@ -11,6 +11,7 @@ export default function AddBirthday({ close }) {
   });
   const [loading, setLoading] = useState(false);
 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setBirthday((prevBody) => ({
@@ -37,7 +38,6 @@ export default function AddBirthday({ close }) {
 
         if (res.status === 200) {
             toast.success("Birthday added successfully");
-            close();
         } else {
             toast.error("Failed to add birthday");
             console.log("Error adding birthday:", res.data.msg);
