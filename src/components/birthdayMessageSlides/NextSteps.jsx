@@ -10,7 +10,7 @@ export default function NextSteps({ share, restart, signup, loading }) {
         <NextStepButton
           onClick={share}
           text={"📤 Share this message"}
-          className={`from-[#10b981] to-[#059669] animate-[slideInUp_0.8s_ease-out_0.5s_both]`}
+          className={`from-[#C3DBC5] to-[#6A7152] animate-[slideInUp_0.8s_ease-out_0.5s_both]`}
           loading={loading}
         />
           <NextStepButton

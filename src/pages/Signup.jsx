@@ -145,7 +145,7 @@ export default function Signup() {
         <AuthLink
           text={"Already have an account"}
           linkText={"Log In"}
-          link={"/"}
+           onClick={() => navigate("/")}
         />
       </div>
     </div>
