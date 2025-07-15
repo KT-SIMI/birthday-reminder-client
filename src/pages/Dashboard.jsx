@@ -119,7 +119,7 @@ export default function Dashboard() {
           text={"Add a friend's birthday"}
         />
       </div>
-      <div className="bg-white rounded-xl shadow-sm p-6 max-md:p-3 mx-8">
+      <div className="bg-white rounded-xl shadow-sm p-6 max-md:p-3 mx-8 max-md:mx-1.5">
         <h2 className="text-xl font-bold text-gray-900 mb-6">Your Friends</h2>
         {data.friends.length === 0 ? (
           <div className="text-center">
