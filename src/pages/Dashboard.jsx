@@ -119,11 +119,11 @@ export default function Dashboard() {
           text={"Add a friend's birthday"}
         />
       </div>
-      <div className="bg-white rounded-xl shadow-sm p-6 mx-8">
+      <div className="bg-white rounded-xl shadow-sm p-6 max-md:p-3 mx-8">
         <h2 className="text-xl font-bold text-gray-900 mb-6">Your Friends</h2>
         {data.friends.length === 0 ? (
           <div className="text-center">
-            <Users className="w-16 h-16 text-gray-300 mx-auto mt-8 mb-8" />
+            <Users className="w-16 h-16 text-gray-100 mx-auto mt-8 mb-8" />
             <p className="text-gray-500">
               No friends added yet. Add your first friend!
             </p>
@@ -158,14 +158,14 @@ export default function Dashboard() {
                           setSelectedFriend(friend);
                           setShowAddMessage(true);
                         }}
-                        className="bg-gradient-to-r from-green-500 to-blue-500 text-white px-4 py-2 rounded-lg hover:from-green-600 hover:to-blue-600 transition-colors flex items-center space-x-2"
+                        className="bg-gradient-to-r from-green-500 to-blue-500 text-white px-4 max-md:px-3 max-md:py-1.5 py-2 rounded-lg hover:from-green-600 hover:to-blue-600 transition-colors flex items-center space-x-2"
                       >
                         <Edit className="w-4 h-4" />
                         <span>Add Message</span>
                       </button>
                     )}
                     {friend.message && (
-                      <span className="text-green-600 font-semibold">
+                      <span className="text-green-600 font-semibold max-md:text-sm">
                         ✓ Message Ready
                       </span>
                     )}
