@@ -100,7 +100,7 @@ export default function Login() {
         <AuthLink
           text={"Don't have an account?"}
           linkText={"Sign Up"}
-          onClick={() => navigate("/signup")}
+          onClick={navigate("/signup")}
         />
       </div>
     </div>
