@@ -8,6 +8,7 @@ import NextSteps from "../components/birthdayMessageSlides/NextSteps";
 import api from "../../utils/api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const slides = [Greeting, Intro, Message, SentBy, NextSteps];
 
@@ -72,10 +73,12 @@ export default function BirthdayMessage() {
       } else {
         toast.error("Couldn't get Message");
         console.log("Error getting message", res.data.msg);
+        navigate('/')
       }
     } catch (err) {
       toast.error("Couldn't get Message. Please try again");
       console.log("Error getting message", err);
+      navigate('/')
     } finally {
       setLoading(false);
     }
@@ -96,9 +99,7 @@ export default function BirthdayMessage() {
     getMessage();
   }, []);
 
-  if (loading) {
-    return <h1 className="text-4xl text-black">Loading...</h1>;
-  }
+ if (loading) return <Loading />
 
   return (
     <div className="flex bg-gradient-to-br from-[#0f0f23] via-[#1a1a2e] to-[#16213e] min-h-[100vh] items-center justify-center text-[#e2e8f0] overflow-hidden">

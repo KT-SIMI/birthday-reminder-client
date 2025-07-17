@@ -6,11 +6,12 @@ import Input from "./Input";
 import Button from "./Button";
 
 
-export default function AddFriend({ close }) {
+export default function AddFriend({ friend, close }) {
+  const [currentFriend, setCurrentFriend] = useState(friend)
   const [body, setBody] = useState({
-    name: "",
-    email: "",
-    birthDate: "",
+    name: currentFriend?.name || "",
+    email: currentFriend?.email || "",
+    birthDate: currentFriend?.birthDate || "",
   });
   const [loading, setLoading] = useState(false);
 
@@ -56,6 +57,29 @@ export default function AddFriend({ close }) {
       close();
     }
   };
+
+  const deleteFriend = async (friendId) => {
+    setLoading(true)
+
+    try {
+      const res = await api.get(`/deleteFriend/friendId:${friendId}`)
+
+      if (res.status === 200) {
+        toast.success("Friend deleted successfully")
+        close()
+      } else {
+        toast.error("Failed to add friend")
+        console.log("Error adding friend:", res.data.msg)
+    
+      }
+    } catch (err) {
+      console.log("Error adding friend:", err)
+      toast.error("Failed to add friend. Please try again")
+    } finally {
+      setLoading(false);
+      close();
+    }
+  }
 
   return (
     <div className="fixed inset-0 bg-none bg-opacity-50 flex items-center justify-center p-4 z-50">

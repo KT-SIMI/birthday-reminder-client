@@ -8,6 +8,7 @@ import { Calendar, Edit, Gift, Plus, Users } from "lucide-react";
 import AddFriend from "../components/AddFriend";
 import ActionCard from "../components/ActionCard";
 import AddMessage from "../components/AddMessage";
+import Loading from "../components/Loading";
 
 export default function Dashboard() {
   const [data, setData] = useState({});
@@ -71,9 +72,7 @@ export default function Dashboard() {
     }
   }, [data]);
 
-  if (loading) {
-    return <h1 className="text-4xl text-black">Loading...</h1>;
-  }
+  if (loading) return <Loading />
 
   const friends = data.friends;
   //   console.log(friends)
