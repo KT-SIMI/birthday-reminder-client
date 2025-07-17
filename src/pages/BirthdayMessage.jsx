@@ -70,6 +70,7 @@ export default function BirthdayMessage() {
       if (res.status === 200) {
         setUser(res.data.data.user);
         setFriend(res.data.data.friend);
+        toast("Swipe for next")
       } else {
         toast.error("Couldn't get Message");
         console.log("Error getting message", res.data.msg);
@@ -102,7 +103,7 @@ export default function BirthdayMessage() {
     useEffect(() => {
     const interval = setInterval(() => {
       next();
-    }, 5000);
+    }, 9000);
 
     return () => clearInterval(interval);
   }, [currentSlide]);
