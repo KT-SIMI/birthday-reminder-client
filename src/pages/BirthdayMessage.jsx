@@ -99,6 +99,14 @@ export default function BirthdayMessage() {
     getMessage();
   }, []);
 
+    useEffect(() => {
+    const interval = setInterval(() => {
+      next();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [currentSlide]);
+
  if (loading) return <Loading />
 
   return (

@@ -5,7 +5,7 @@ export default function SentBy({ user }) {
             From your Birthday Buddy
         </div>
         <div className="text-6xl fomt-black bg-[#220C10] [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] bg-clip-text text-transparent animate-[slideInRight_0.8s_ease-out_0.6s_both]">
-            {/* {user.firstname} */} Chukwundi
+            {user.firstname}
         </div>
         <div className="text-5xl text-[#ff6b6b] mt-4 animate-[heartbeat_0.6s_ease-in-out_indefinite]">
             ❤️
